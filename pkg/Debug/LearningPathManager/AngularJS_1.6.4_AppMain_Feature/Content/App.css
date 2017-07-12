@@ -1,0 +1,23 @@
+﻿
+#ajsApp {
+    padding: 0;
+}
+
+#header {
+    height: 40px;
+}
+
+#page-wrap {
+    width: 800px;
+    margin: 0 auto;
+    min-height:500px;
+    background-color:#fff;
+    padding: 4px;
+}
+#page-nav{
+     width: 800px;
+    margin: 0 auto;
+}
+#appBackground{
+    background-color:#333333;
+}
