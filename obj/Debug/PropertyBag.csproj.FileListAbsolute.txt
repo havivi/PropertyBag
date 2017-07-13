@@ -1,0 +1,13 @@
+C:\code\havivi\PropertyBag\bin\Debug\LearningPathManager.pdb
+C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Activities.dll
+C:\code\havivi\PropertyBag\bin\Debug\Microsoft.SharePoint.DesignTime.Activities.Design.dll
+C:\code\havivi\PropertyBag\bin\Debug\Microsoft.SharePoint.DesignTime.Activities.dll
+C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Activities.Design.dll
+C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Activities.Design.Services.dll
+C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Workflow.Client.dll
+C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Activities.xml
+C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Activities.Design.xml
+C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Workflow.Client.xml
+C:\code\havivi\PropertyBag\obj\Debug\PropertyBag.csprojResolveAssemblyReference.cache
+C:\code\havivi\PropertyBag\obj\Debug\LearningPathManager.dll
+C:\code\havivi\PropertyBag\obj\Debug\LearningPathManager.pdb

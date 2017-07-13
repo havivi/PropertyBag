@@ -25,16 +25,11 @@
     }
 
     function getSitesResource() {
-        
-        return $resource("_api/search/query",
+        return $resource('/_api/search/query?querytext=\'contentclass:sts_site\')',
        {},
        {
            get: {
-               method: 'GET',
-               params: {
-                   'querytext': '\'* AND contentclass:sts_site\'',
-                   'selectproperties': '\'Title,Path\'' 
-               },
+               method: 'GET', 
                headers: {
                    'Accept': 'application/json;odata=verbose'
                }
@@ -49,7 +44,7 @@
 
         var deferred = $q.defer();
         resource.get({}, function (data) {
-            deferred.resolve(data.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results);
+            deferred.resolve(data);
             common.logger.log("retrieved app content", data, serviceId);
         }, function (error) {
             deferred.reject(error);

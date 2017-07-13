@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Description="SharePoint App Feature" Id="39bda8f6-8b22-4160-adcb-bfae5e3e5bed" Scope="Web" Title="App main feature" Version="1.0.0.0">
+  <ElementManifests>
+    <ElementManifest Location="Pages\Elements.xml" />
+    <ElementFile Location="Pages\app.html" />
+    <ElementFile Location="Pages\appLauncher.html" />
+    <ElementManifest Location="Scripts\Elements.xml" />
+    <ElementFile Location="Scripts\angular-route.min.js.map" />
+    <ElementFile Location="Scripts\angular-route.min.js" />
+    <ElementFile Location="Scripts\angular-route.js" />
+    <ElementFile Location="Scripts\angular-sanitize.min.js.map" />
+    <ElementFile Location="Scripts\angular-sanitize.min.js" />
+    <ElementFile Location="Scripts\angular-sanitize.js" />
+    <ElementFile Location="Scripts\angular-mocks.js" />
+    <ElementFile Location="Scripts\angular.min.js.map" />
+    <ElementFile Location="Scripts\angular.min.js" />
+    <ElementFile Location="Scripts\angular.js" />
+    <ElementFile Location="Scripts\angular-cookies.min.js.map" />
+    <ElementFile Location="Scripts\angular-cookies.min.js" />
+    <ElementFile Location="Scripts\angular-cookies.js" />
+    <ElementFile Location="Scripts\moment-with-langs.min.js" />
+    <ElementFile Location="Scripts\moment-with-langs.js" />
+    <ElementFile Location="Scripts\moment.min.js" />
+    <ElementFile Location="Scripts\moment.js" />
+    <ElementFile Location="Scripts\moment.min.js.map" />
+    <ElementFile Location="Scripts\angular-resource.min.js.map" />
+    <ElementFile Location="Scripts\angular-resource.min.js" />
+    <ElementFile Location="Scripts\angular-resource.js" />
+    <ElementFile Location="Scripts\angular-animate.min.js.map" />
+    <ElementFile Location="Scripts\angular-animate.min.js" />
+    <ElementFile Location="Scripts\angular-animate.js" />
+    <ElementFile Location="Scripts\ngOfficeUiFabric.min.js" />
+    <ElementFile Location="Scripts\jquery-3.2.1.min.js" />
+    <ElementManifest Location="Content\Elements.xml" />
+    <ElementFile Location="Content\App.css" />
+    <ElementFile Location="Content\fabric.min.css" />
+    <ElementFile Location="Content\fabric.components.min.css" />
+    <ElementManifest Location="Images\Elements.xml" />
+    <ElementFile Location="Images\AppIcon.png" />
+    <ElementFile Location="Images\error.png" />
+    <ElementFile Location="Images\info.png" />
+    <ElementFile Location="Images\success.png" />
+    <ElementFile Location="Images\warning.png" />
+    <ElementManifest Location="Elements.xml" />
+    <ElementFile Location="App\app.js" />
+    <ElementFile Location="App\layout\shell.html" />
+    <ElementFile Location="App\layout\shell.js" />
+    <ElementFile Location="App\common\logger.js" />
+    <ElementFile Location="App\common\common.js" />
+    <ElementFile Location="App\config.js" />
+    <ElementFile Location="App\config.exceptionHandler.js" />
+    <ElementFile Location="App\config.route.js" />
+    <ElementFile Location="App\util\jquery-extensions.js" />
+    <ElementFile Location="App\layout\spAppChrome.html" />
+    <ElementFile Location="App\layout\spAppChrome.js" />
+    <ElementFile Location="App\appLauncher.js" />
+    <ElementFile Location="App\services\spContext.js" />
+    <ElementFile Location="App\layout\topNavigation.html" />
+    <ElementFile Location="App\layout\topNavigation.js" />
+    <ElementFile Location="App\layout\header.html" />
+    <ElementFile Location="App\layout\header.js" />
+    <ElementFile Location="App\dashboard\dashboard.html" />
+    <ElementFile Location="App\dashboard\dashboard.js" />
+    <ElementFile Location="App\layout\workingonit.html" />
+    <ElementFile Location="App\layout\workingonit.js" />
+    <ElementFile Location="App\services\datacontext.angular.js" />
+    <ElementFile Location="App\config.angular.http.js" />
+    <ElementFile Location="App\news\news.js" />
+    <ElementFile Location="App\news\news.html" />
+  </ElementManifests>
+  <UpgradeActions>
+    <VersionRange>
+      <ApplyElementManifests>
+        <ElementManifest Location="Pages\Elements.xml" />
+        <ElementManifest Location="Scripts\Elements.xml" />
+        <ElementManifest Location="Content\Elements.xml" />
+        <ElementManifest Location="Images\Elements.xml" />
+        <ElementManifest Location="Elements.xml" />
+      </ApplyElementManifests>
+    </VersionRange>
+  </UpgradeActions>
+</Feature>

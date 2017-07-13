@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--Published:920014D5-5E5A-442D-934A-437E4FB0A4DA-->
 <!--Created:cb85b80c-f585-40ff-8bfc-12ff4d0e34a9-->
-<App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest" Name="ajs" ProductID="{fa92c9e2-9ddf-45b3-9d74-d41d48c05f9b}" Version="1.0.0.0" SharePointMinVersion="15.0.0.0">
+<App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest" Name="PropertyBag" ProductID="{5C7B418B-A09D-45A9-9BB3-54BBFD8E7BC5}" Version="1.0.0.0" SharePointMinVersion="15.0.0.0">
   <Properties>
-    <Title>AngularJS 1.6.4</Title>
+    <Title>PropertyBag</Title>
     <StartPage>~appWebUrl/appLauncher.html?{StandardTokens}&amp;SPHostTitle={HostTitle}&amp;SPHostLogoUrl={HostLogoUrl}</StartPage>
   </Properties>
   <AppPrincipal>
     <Internal />
   </AppPrincipal>
+  <AppPermissionRequests>
+    <AppPermissionRequest Scope="http://sharepoint/content/tenant" Right="FullControl" />
+    <AppPermissionRequest Scope="http://sharepoint/search" Right="QueryAsUserIgnoreAppPrincipal" />
+  </AppPermissionRequests>
 </App>

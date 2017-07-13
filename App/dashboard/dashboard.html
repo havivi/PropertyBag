@@ -1,3 +1,6 @@
 ﻿<div data-ng-controller="dashboard as vm">
-   
+    <uif-dropdown ng-model="value.path.Value">
+        
+        <uif-dropdown-option value="{{value.path.Value}}" ng-repeat="(key, value) in vm.sites" title="{{value.path.Value}}">{{value.title.Value}}</uif-dropdown-option>
+    </uif-dropdown>
 </div>
