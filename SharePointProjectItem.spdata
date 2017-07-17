@@ -25,7 +25,7 @@
     <ProjectItemFile Source="App\layout\workingonit.js" Target="App\layout\" Type="ElementFile" />
     <ProjectItemFile Source="App\services\datacontext.angular.js" Target="App\services\" Type="ElementFile" />
     <ProjectItemFile Source="App\config.angular.http.js" Target="App\" Type="ElementFile" />
-    <ProjectItemFile Source="App\news\news.js" Target="App\news\" Type="ElementFile" />
-    <ProjectItemFile Source="App\news\news.html" Target="App\news\" Type="ElementFile" />
+    <ProjectItemFile Source="App\about\about.js" Target="App\about\" Type="ElementFile" />
+    <ProjectItemFile Source="App\about\about.html" Target="App\about\" Type="ElementFile" />
   </Files>
 </ProjectItem>

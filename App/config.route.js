@@ -25,39 +25,26 @@
         config: {
           templateUrl: 'app/dashboard/dashboard.html',
           title: 'Home',
-          settings: {
-            nav: 0,
+          settings: { 
+            nav: 1,
             content: 'Home',
-            topNavigationEnabled: false
+            topNavigationEnabled: true
           }
         }
       },
       {
-        url: '/news',
+        url: '/about',
         config: {
-            templateUrl: 'app/news/news.html',
-          title: 'News',
+            templateUrl: 'app/about/about.html',
+          title: 'About',
           settings: {
-            nav: 1,
-            content: 'News',
+            nav: 2,
+            content: 'About',
             topNavigationEnabled: true
           }
         }
        
-      },
-      {
-          url: '/menu',
-          config: {
-              templateUrl: 'app/dashboard/dashboard.html',
-              title: 'menu2',
-              settings: {
-                  nav: 2,
-                  content: 'Item 2',
-                  topNavigationEnabled: true
-              }
-          }
-
-      }
+      } 
 
     ];
   }

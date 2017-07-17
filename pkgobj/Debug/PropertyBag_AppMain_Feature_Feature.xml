@@ -65,8 +65,8 @@
     <ElementFile Location="App\layout\workingonit.js" />
     <ElementFile Location="App\services\datacontext.angular.js" />
     <ElementFile Location="App\config.angular.http.js" />
-    <ElementFile Location="App\news\news.js" />
-    <ElementFile Location="App\news\news.html" />
+    <ElementFile Location="App\about\about.js" />
+    <ElementFile Location="App\about\about.html" />
   </ElementManifests>
   <UpgradeActions>
     <VersionRange>

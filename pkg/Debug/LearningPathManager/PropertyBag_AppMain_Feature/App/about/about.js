@@ -2,12 +2,12 @@
     'use strict';
 
     // define controller
-    var controllerId = 'news';
+    var controllerId = 'about';
     angular.module('app').controller(controllerId,
-      ['common', news]);
+      ['common', about]);
 
     // init controller
-    function news(common) {
+    function about(common) {
         var vm = this;
         var logger = common.logger;
 

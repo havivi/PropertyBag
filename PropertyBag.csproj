@@ -85,8 +85,8 @@
     <Content Include="App\layout\spAppChrome.js" />
     <Content Include="App\layout\workingonit.html" />
     <Content Include="App\layout\workingonit.js" />
-    <Content Include="App\news\news.html" />
-    <Content Include="App\news\news.js" />
+    <Content Include="App\about\about.html" />
+    <Content Include="App\about\about.js" />
     <Content Include="App\services\datacontext.angular.js" />
     <Content Include="App\services\spContext.js" />
     <Content Include="App\util\jquery-extensions.js" />

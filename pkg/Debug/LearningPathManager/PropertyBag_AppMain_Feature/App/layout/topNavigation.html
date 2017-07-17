@@ -1,16 +1,6 @@
-﻿<div data-ng-controller="topNavigation as vm" id="page-nav">
-
-    <uif-nav-bar uif-overlay="dark">
-        <uif-nav-bar-search placeholder="search for smth" uif-on-search="onSearch(search)">
-        </uif-nav-bar-search>
+﻿<div data-ng-controller="topNavigation as vm" id="page-nav" style="margin-top:20px;">
+    <uif-nav-bar uif-overlay="dark">      
         <uif-nav-bar-item uif-text="route.config.settings.content" data-ng-repeat="route in vm.navRoutes"
                           ng-click="vm.navigate(route.url)">
-
-        </uif-nav-bar-item>
-        <uif-nav-bar-item uif-position="right">
-            <uif-content>
-              Link
-
-            </uif-content>
-        </uif-nav-bar-item>
+        </uif-nav-bar-item>       
 </div>

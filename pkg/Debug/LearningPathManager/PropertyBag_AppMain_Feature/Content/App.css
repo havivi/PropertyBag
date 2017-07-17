@@ -1,4 +1,7 @@
 ﻿
+body{
+    overflow-y:auto;
+}
 #ajsApp {
     padding: 0;
 }
@@ -14,10 +17,11 @@
     background-color:#fff;
     padding: 4px;
 }
-#page-nav{
+#page-nav, #page-header{
      width: 800px;
     margin: 0 auto;
 }
+
 #appBackground{
     background-color:#333333;
 }

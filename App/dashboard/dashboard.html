@@ -1,6 +1,91 @@
-﻿<div data-ng-controller="dashboard as vm">
-    <uif-dropdown ng-model="value.path.Value">
+﻿
+<div data-ng-controller="dashboard as vm" class="ms-Grid" style="margin-bottom:100px">
+    
+    <div class="ms-Grid-row">
+       
+        <div class="ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2" >
+            <uif-label>Site collection</uif-label>
+        </div>
+
+        <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10">
+            <uif-dropdown ng-model="vm.site" ng-change="vm.getSubsites(vm.site);">
+                <uif-dropdown-option value="{{site.path.Value}}"
+                                     ng-repeat="(key, site) in vm.sites"
+                                     title="{{site.path.Value}}">{{site.title.Value}}</uif-dropdown-option>
+            </uif-dropdown>
+        </div>
+    </div>
+
+    <div class="ms-Grid-row">
+       
+        <div class="ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2">
+            <uif-label>Subsite</uif-label>
+        </div>
+
+        <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10">
+            <uif-dropdown ng-model="vm.subsite" ng-change="vm.getLists(vm.subsite);">
+                <uif-dropdown-option value="{{subsite.path}}"
+                                     ng-repeat="(key, subsite) in vm.subsites"
+                                     title="{{subsite.path}}">{{subsite.title}}</uif-dropdown-option>
+            </uif-dropdown>
+        </div>
+    </div>
+    <div class="ms-Grid-row">
         
-        <uif-dropdown-option value="{{value.path.Value}}" ng-repeat="(key, value) in vm.sites" title="{{value.path.Value}}">{{value.title.Value}}</uif-dropdown-option>
-    </uif-dropdown>
+        <div class="ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2" >
+            <uif-label>List</uif-label>
+        </div>
+
+        <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10">
+            <uif-dropdown ng-model="vm.listname" ng-change="vm.getListProperties(vm.listname);">
+                <uif-dropdown-option value="{{list.title}}"
+                                     ng-repeat="(key, list) in vm.lists"
+                                     title="{{list.title}}">{{list.title}}</uif-dropdown-option>
+            </uif-dropdown>
+        </div>
+    </div>
+
+    <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
+            <h2  ng-show="!vm.subsite && !vm.listname && vm.site">
+                Properties for site: {{vm.site}}
+            </h2>
+            <h2  ng-show="vm.subsite && !vm.listname && vm.site">
+                Properties for subsite: {{vm.subsite}}
+            </h2>
+            <h2 ng-show="vm.listname">
+                Properties for list: {{vm.listname}} 
+                <lable ng-show="vm.site">site: {{vm.site}}</lable>
+                <lable ng-show="vm.subsite">subsite: {{vm.subsite}}</lable>
+            </h2>
+
+        </div>
+    </div>
+
+    <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
+            <br /><br />
+            <uif-table uif-table-type="fixed">
+                <uif-table-head>
+                    <uif-table-row>
+                        <uif-table-header uif-order-by="fileName" style="width:20px">Edit</uif-table-header>
+                        <uif-table-header>Value</uif-table-header>
+                        <uif-table-header uif-order-by="modified">Property</uif-table-header>
+                        <uif-table-header uif-order-by="type" style="width:20px">Delete</uif-table-header>
+                    </uif-table-row>
+                </uif-table-head>
+                <uif-table-body>
+                    <uif-table-row ng-repeat="(key, value)  in vm.properties " ng-if="$index > 0">
+                        <uif-table-cell style="width:20px;vertical-align: text-top;;cursor:pointer;text-align:center"><img src="/_layouts/15/images/edit.GIF" /></uif-table-cell>
+                        <uif-table-cell style="vertical-align: text-top;word-wrap:break-word;">{{key}}</uif-table-cell>
+                        <uif-table-cell style="vertical-align: text-top;word-wrap:break-word; width: 300px">{{value}}</uif-table-cell>
+                        <uif-table-cell style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center"><img src="/_layouts/15/images/delete.GIF" /></uif-table-cell>
+
+                    </uif-table-row>
+                </uif-table-body>
+            </uif-table>
+        </div>
+    </div>
+
+   
 </div>

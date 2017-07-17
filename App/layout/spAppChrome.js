@@ -36,21 +36,7 @@
       spChromeControlData = {
         siteUrl: spContext.hostWeb.url,
         siteTitle: spContext.hostWeb.title,
-        appHelpPageUrl: "javascript:openHelp('help')",
-        appIconUrl: spContext.hostWeb.logoUrl,
-        appTitle: config.title,
-        settingsLinks: [
-          {
-            linkUrl: "/Settings",
-            displayName: "Settings"
-          }, {
-              linkUrl: "/AboutMe",
-              displayName: "About Me"
-          }, {
-              linkUrl: "/News",
-              displayName: "Write a blog"
-          }
-        ]
+        appTitle: config.title 
       };
 
       // create the sharepoint chrome control

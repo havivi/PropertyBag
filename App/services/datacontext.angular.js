@@ -16,7 +16,10 @@
 
     // service public signature
     return {
-        getSites: getSites
+        getSites: getSites,
+        getSubsites: getSubsites,
+        getLists: getLists,
+        getProperties: getProperties
     };
 
     // init service
@@ -41,8 +44,7 @@
            }
        });
     }
-
-      // get all item choices available
+       
     function getSites() {
         // get resource
         var resource = getSitesResource();
@@ -58,6 +60,113 @@
 
         return deferred.promise;
     }
+
+    function getSubsitesResource(site) {
+
+        return $resource(spContext.hostWeb.appWebUrl + "/_api/SP.AppContextSite(@target)/web/webs?@target='" + site + "'",
+       {},
+       {
+           get: {
+               method: 'GET', 
+               headers: {
+                   'Accept': 'application/json;odata=verbose'
+               }
+           }
+       });
+    }
+
+    function getSubsites(site) {
+     
+        var resource = getSubsitesResource(site);
+
+        var deferred = $q.defer();
+        resource.get({}, function (data) {
+            deferred.resolve(data.d.results);
+            common.logger.log("retrieved app content", data, serviceId);
+        }, function (error) {
+            deferred.reject(error);
+            common.logger.logError("retrieved app content", error, serviceId);
+        });
+
+        return deferred.promise;
+    }
        
+    function getListsResource(site) {
+
+        return $resource(spContext.hostWeb.appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists?@target='" + site + "'",
+       {},
+       {
+           get: {
+               method: 'GET',
+               headers: {
+                   'Accept': 'application/json;odata=verbose'
+               }
+           }
+       });
+    }
+
+    function getLists(site) {
+
+        var resource = getListsResource(site);
+
+        var deferred = $q.defer();
+        resource.get({}, function (data) {
+            deferred.resolve(data.d.results);
+            common.logger.log("retrieved app content", data, serviceId);
+        }, function (error) {
+            deferred.reject(error);
+            common.logger.logError("retrieved app content", error, serviceId);
+        });
+
+        return deferred.promise;
+    }
+
+    function getPropertiesResource(site, list) {
+        if (!list) {
+            return $resource(spContext.hostWeb.appWebUrl + "/_api/SP.AppContextSite(@target)/web/AllProperties?@target='" + site + "'",
+           {},
+           {
+               get: {
+                   method: 'GET',
+                   headers: {
+                       'Accept': 'application/json;odata=verbose'
+                   }
+               }
+           });
+        }
+        else 
+        {
+            return $resource(spContext.hostWeb.appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists/GetByTitle('" + list + "')?@target='" + site + "'",
+          {},
+          {
+              get: {
+                  method: 'GET',
+                  headers: {
+                      'Accept': 'application/json;odata=verbose'
+                  }
+              }
+          });
+        }
+    }
+
+    function getProperties(site, list) {
+      
+        var resource = getPropertiesResource(site, list);
+
+        var deferred = $q.defer();
+        resource.get({}, function (data) {
+            if (list) {
+                deferred.resolve(data.d.properties);
+            } else {
+                deferred.resolve(data.d);
+            }
+            common.logger.log("retrieved app content", data, serviceId);
+        }, function (error) {
+            deferred.reject(error);
+            common.logger.logError("retrieved app content", error, serviceId);
+        });
+
+        return deferred.promise;
+    }
   }
 })();
