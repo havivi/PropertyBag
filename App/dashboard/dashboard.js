@@ -14,6 +14,8 @@
         vm.getListProperties = getListProperties;
         vm.openDialog = openDialog;
         vm.closeDialog = closeDialog;
+        vm.openDeleteDialog = openDeleteDialog;
+        vm.closeDeleteDialog = closeDeleteDialog;
         var logger = common.logger;
 
         vm.sites = [];
@@ -24,6 +26,7 @@
         vm.subsite = '';
         vm.listname = '';
         vm.showDialog = false;
+        vm.showDeleteDialog = false;
         // init controller
         init();
 
@@ -140,8 +143,20 @@
             }
             vm.showDialog = true;
         }
+
         function closeDialog() {
             vm.showDialog = false;
+        }
+
+        function openDeleteDialog(key, value) {
+            vm.propertyName = key;
+            vm.propertyValue = value;
+            
+            vm.showDeleteDialog = true;
+        }
+
+        function closeDeleteDialog() {
+            vm.showDeleteDialog = false;
         }
 
     }

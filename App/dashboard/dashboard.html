@@ -81,7 +81,7 @@
                         <uif-table-cell style="width:20px;vertical-align: text-top;cursor:pointer;text-align:center" ng-click="vm.openDialog(key,value)"><i class="ms-Icon ms-Icon--editBox" style="font-size:24px"></i></uif-table-cell>
                         <uif-table-cell style="vertical-align: text-top;word-wrap:break-word;">{{key}}</uif-table-cell>
                         <uif-table-cell style="vertical-align: text-top;word-wrap:break-word; width: 300px">{{value}}</uif-table-cell>
-                        <uif-table-cell style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center"><i class="ms-Icon ms-Icon--trash" style="font-size:24px"></i> </uif-table-cell>
+                        <uif-table-cell style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center" ng-click="vm.openDeleteDialog(key,value)"><i class="ms-Icon ms-Icon--trash" style="font-size:24px"></i> </uif-table-cell>
 
                     </uif-table-row>
                 </uif-table-body>
@@ -118,6 +118,34 @@
         </uif-dialog-inner>
     </uif-dialog>
 
+    <uif-dialog uif-close="false" uif-overlay="dark" uif-type="multiline" ng-show="vm.showDeleteDialog">
+        <uif-dialog-header>
+            <p class="ms-Dialog-title">
+               Delete Property
+            </p>
+        </uif-dialog-header>
+        <uif-dialog-inner>
+            <uif-dialog-content>
+                <uif-dialog-subtext>
+                    <span>
+                        Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails.
+                        asdasda
+                    </span>
+                    <uif-icon uif-type="arrowDownLeft" />
+                </uif-dialog-subtext>
+                <uif-textfield uif-label="Property" ng-model="vm.propertyName" disabled />
+                <uif-textfield uif-label="Value" ng-model="vm.propertyValue" disabled /> 
+            </uif-dialog-content>
+            <uif-dialog-actions uif-position="right">
+                <button class="ms-Dialog-action ms-Button ms-Button--primary" ng-click="vm.closeDeleteDialog()">
+                    <span class="ms-Button-label">Cancel</span>
+                </button>
+                <button class="ms-Dialog-action ms-Button ms-Button--primary">
+                    <span class="ms-Button-label">Delete</span>
+                </button>
+            </uif-dialog-actions>
+        </uif-dialog-inner>
+    </uif-dialog>
 </div>
 
 
