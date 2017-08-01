@@ -20,7 +20,8 @@
             getSubsites: getSubsites,
             getLists: getLists,
             getProperties: getProperties,
-            getWebProperties: getWebProperties
+            addPropertyBagWeb: addPropertyBagWeb,
+            deletePropertyBagWeb: deletePropertyBagWeb
         };
 
         // init service
@@ -169,12 +170,13 @@
 
             return deferred.promise;
         }
+
         var web;
         var webProps;
         var context;
         var appContextSite;
 
-        function getWebProperties(site) {
+        function addPropertyBagWeb(site, key, value, indexed) {
 
             var deferred = $q.defer();
             context = new SP.ClientContext(spContext.hostWeb.appWebUrl);
@@ -186,22 +188,10 @@
             context.load(webProps);
             context.executeQueryAsync(
                 function () {
-                    var encodedPropKey = EncodePropertyKey('test');
-                    webProps.set_item("alontest001", encodedPropKey);
-                    web.update();
-                    context.executeQueryAsync(
-                    function () {
+                    deferred.resolve();
+                    addNewProperty(key, value, indexed);
 
-                        alert('The propertybag   was added');
-                        // $scope.GetProperties();
-                    },
-                    function (sender, args) {
-                        alert(args.get_message());
-                        //  rerurn = 'Failed in adding propertybag  "' + property.key + '". Error: ' + args.get_message();
 
-                    }
-                );
-                    deferred.resolve(webProps);
                 },
                 function (sender, args) {
                     common.logger.logError(args.get_message(), error, serviceId);
@@ -212,50 +202,60 @@
             return deferred.promise;
         }
 
-        function addNewProperty(property) {
+        function deletePropertyBagWeb(site, key) {
 
+            var deferred = $q.defer();
+            context = new SP.ClientContext(spContext.hostWeb.appWebUrl);
+            appContextSite = new SP.AppContextSite(context, site);
+            context.load(appContextSite.get_web());
+            web = appContextSite.get_web();
+            webProps = web.get_allProperties();
+            context.load(web);
+            context.load(webProps);
+            context.executeQueryAsync(
+                function () {
+                    deferred.resolve();
+                    deleteProperty(key);
+                },
+                function (sender, args) {
+                    common.logger.logError(args.get_message(), error, serviceId);
+                    deferred.reject(args.get_message());
+                }
+            );
+
+            return deferred.promise;
+        }
+
+        function addNewProperty(key, value, indexed) {
+            var deferred = $q.defer();
             // Adds a new property or modified the value of an existing property. 
-            webProps.set_item(property.key, property.value)
-            // Check if "vti_indexedpropertykeys" property exists in the property bag. If yes, set the flag
-
-            var found = $.map($scope.properties, function (val) {
-                if (val.Key == 'vti_indexedpropertykeys') {
-
-                    property.indexedKeysExists = true;
-                }
-            });
-            if (property.indexed === true) {
-                var encodedPropKey = EncodePropertyKey(property.key);
-
-                if (property.indexedKeysExists) {
-                    var indexedProperties = webProps.get_item("vti_indexedpropertykeys");
-                    if (indexedProperties.indexOf(encodedPropKey) > -1) {
-                        // Means the property is already indexed
-
-                        alert('The propertybag  "' + property.key + '" is already indexed.');
-                    }
-                    else {
-                        // Add the encoded value to the property bag vti_indexedpropertykeys
-                        var addEncodedKey = indexedProperties + encodedPropKey + "|"
-                        webProps.set_item("vti_indexedpropertykeys", addEncodedKey);
-                        // alert('The vti_indexedpropertykeys  "' + property.key + '" was added');
-                    }
-                }
-                else {
-                    // vti_indexedpropertykeys does not exist. Add the new property.
-                    webProps.set_item("vti_indexedpropertykeys", encodedPropKey);
-                }
-            }
+            webProps.set_item(key, value)
+            
+             
             web.update();
             context.executeQueryAsync(
             function () {
+                deferred.resolve();
+                  
 
-                alert('The propertybag  "' + property.key + '" was added');
-                $scope.GetProperties();
             },
             function (sender, args) {
-                alert(args.get_message());
-                rerurn = 'Failed in adding propertybag  "' + property.key + '". Error: ' + args.get_message();
+                //alert('Failed in adding propertybag  "' + property.key + '". Error: ' + args.get_message()); 
+
+            }
+        );
+        }
+
+        function deleteProperty(key) {
+            var deferred = $q.defer();
+            webProps.set_item(key);   
+            web.update();
+            context.executeQueryAsync(
+            function () {
+                deferred.resolve(); 
+                 
+            },
+            function (sender, args) { 
 
             }
         );

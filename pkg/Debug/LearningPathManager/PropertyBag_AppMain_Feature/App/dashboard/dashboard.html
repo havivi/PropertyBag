@@ -1,5 +1,5 @@
 ﻿
-<div data-ng-controller="dashboard as vm" class="ms-Grid" style="margin-bottom:100px">
+<div data-ng-controller="dashboard as vm" class="ms-Grid" style="margin-bottom:100px;min-height:800px;padding:20px;">
 
     <div class="ms-Grid-row">
 
@@ -48,15 +48,15 @@
     <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
             <h4 ng-show="!vm.subsite && !vm.listname && vm.site">
-                Properties for site: <uif-link ng-href="vm.site">{{vm.site}}</uif-link>
+                Properties for site: <uif-link ng-href="vm.site" style="color:#000000;text-decoration: underline">{{vm.site}}</uif-link>
             </h4>
             <h4 ng-show="vm.subsite && !vm.listname && vm.site">
-                Properties for subsite: <uif-link ng-href="vm.subsite">{{vm.subsite}}</uif-link>
+                Properties for subsite: <uif-link ng-href="vm.subsite"  style="color:#000000;text-decoration: underline">{{vm.subsite}}</uif-link>
             </h4>
             <h4 ng-show="vm.listname">
-                Properties for list: <b>  {{vm.listname}} </b>
-                <lable ng-show="!vm.subsite && vm.site">site: <uif-link ng-href="vm.site">{{vm.site}}</uif-link>  </lable>
-                <lable ng-show="vm.subsite && vm.site">subsite: <uif-link ng-href="vm.subsite">{{vm.subsite}}</uif-link> </lable>
+                Properties for list: <u>  {{vm.listname}} </u>
+                <lable ng-show="!vm.subsite && vm.site">site: <uif-link ng-href="vm.site"  style="color:#000000;text-decoration: underline">{{vm.site}}</uif-link>  </lable>
+                <lable ng-show="vm.subsite && vm.site">subsite: <uif-link ng-href="vm.subsite"  style="color:#000000;text-decoration: underline">{{vm.subsite}}</uif-link> </lable>
             </h4>
 
         </div>
@@ -81,7 +81,7 @@
                         <uif-table-cell style="width:20px;vertical-align: text-top;cursor:pointer;text-align:center" ng-click="vm.openDialog(key,value)"><i class="ms-Icon ms-Icon--editBox" style="font-size:24px"></i></uif-table-cell>
                         <uif-table-cell style="vertical-align: text-top;word-wrap:break-word;">{{key}}</uif-table-cell>
                         <uif-table-cell style="vertical-align: text-top;word-wrap:break-word; width: 300px">{{value}}</uif-table-cell>
-                        <uif-table-cell style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center"><i class="ms-Icon ms-Icon--trash" style="font-size:24px"></i> </uif-table-cell>
+                        <uif-table-cell style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center" ng-click="vm.openDeleteDialog(key,value)"><i class="ms-Icon ms-Icon--trash" style="font-size:24px"></i> </uif-table-cell>
 
                     </uif-table-row>
                 </uif-table-body>
@@ -105,19 +105,47 @@
                 </uif-dialog-subtext>
                 <uif-textfield uif-label="Property" ng-model="vm.propertyName" ng-disabled="vm.propertyNameDisabled" />
                 <uif-textfield uif-label="Value" ng-model="vm.propertyValue" />
-                <<uif-toggle uif-label-off="No" uif-label-on="Yes" ng-model="toggled">Toggle this, or not</uif-toggle>
+                <<uif-toggle uif-label-off="No" uif-label-on="Yes" ng-model="vm.propertySearchable">Make Property Bag Searchable</uif-toggle>
             </uif-dialog-content>
             <uif-dialog-actions uif-position="right">
                 <button class="ms-Dialog-action ms-Button ms-Button--primary" ng-click="vm.closeDialog()">
                     <span class="ms-Button-label">Cancel</span>
                 </button>
                 <button class="ms-Dialog-action ms-Button ms-Button--primary">
-                    <span class="ms-Button-label">Save</span>
+                    <span class="ms-Button-label"  ng-click="vm.saveProperty(vm.subsite)">Save</span>
                 </button>
             </uif-dialog-actions>
         </uif-dialog-inner>
     </uif-dialog>
 
+    <uif-dialog uif-close="false" uif-overlay="dark" uif-type="multiline" ng-show="vm.showDeleteDialog">
+        <uif-dialog-header>
+            <p class="ms-Dialog-title">
+               Delete Property
+            </p>
+        </uif-dialog-header>
+        <uif-dialog-inner>
+            <uif-dialog-content>
+                <uif-dialog-subtext>
+                    
+                     <span style="color:red; font-size:16px;">
+                         <i class="ms-Icon ms-Icon--alertOutline" style="font-size:24px"></i>     Are you sure you want to delete this property?
+                    </span>
+                    
+                </uif-dialog-subtext>
+                <uif-textfield uif-label="Property" ng-model="vm.propertyName" disabled />
+                <uif-textfield uif-label="Value" ng-model="vm.propertyValue" disabled /> 
+            </uif-dialog-content>
+            <uif-dialog-actions uif-position="right">
+                <button class="ms-Dialog-action ms-Button ms-Button--primary" ng-click="vm.closeDeleteDialog()">
+                    <span class="ms-Button-label">No - Cancel</span>
+                </button>
+                <button class="ms-Dialog-action ms-Button ms-Button--primary">
+                    <span class="ms-Button-label">YES - Delete</span>
+                </button>
+            </uif-dialog-actions>
+        </uif-dialog-inner>
+    </uif-dialog>
 </div>
 
 

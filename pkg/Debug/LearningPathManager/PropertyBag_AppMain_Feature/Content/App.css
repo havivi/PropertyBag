@@ -1,7 +1,8 @@
 ﻿
-body{
-    overflow-y:auto;
+body {
+    overflow-y: auto;
 }
+
 #ajsApp {
     padding: 0;
 }
@@ -13,15 +14,32 @@ body{
 #page-wrap {
     width: 1000px;
     margin: 0 auto;
-    min-height:500px;
-    background-color:#fff;
-    padding: 4px;
+    min-height: 500px;
+    background-color: #fff;
+     
 }
-#page-nav, #page-header{
-     width: 1000px;
+
+#page-nav, #page-header {
+    width: 1000px;
     margin: 0 auto;
 }
 
-#appBackground{
-    background-color:#333333;
+#appBackground {
+    background-color: #333333;
+}
+
+.ms-bgColor-themePrimaryApp {
+    background-color: #0078d7;
+}
+
+.ms-NavBar-link span {
+    color: #ffffff;
+}
+
+.ms-NavBar-link:hover span {
+    color: #ffffff;
+}
+
+.ms-NavBar-link:visited span {
+    color: #ffffff;
 }

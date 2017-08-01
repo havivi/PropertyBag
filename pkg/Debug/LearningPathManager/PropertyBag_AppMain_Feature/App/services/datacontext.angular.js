@@ -20,7 +20,7 @@
             getSubsites: getSubsites,
             getLists: getLists,
             getProperties: getProperties,
-            getWebProperties: getWebProperties
+            addPropertyBagWeb: addPropertyBagWeb 
         };
 
         // init service
@@ -169,12 +169,13 @@
 
             return deferred.promise;
         }
+
         var web;
         var webProps;
         var context;
         var appContextSite;
 
-        function getWebProperties(site) {
+        function addPropertyBagWeb(site, key, value, indexed) {
 
             var deferred = $q.defer();
             context = new SP.ClientContext(spContext.hostWeb.appWebUrl);
@@ -186,22 +187,10 @@
             context.load(webProps);
             context.executeQueryAsync(
                 function () {
-                    var encodedPropKey = EncodePropertyKey('test');
-                    webProps.set_item("alontest001", encodedPropKey);
-                    web.update();
-                    context.executeQueryAsync(
-                    function () {
-
-                        alert('The propertybag   was added');
-                        // $scope.GetProperties();
-                    },
-                    function (sender, args) {
-                        alert(args.get_message());
-                        //  rerurn = 'Failed in adding propertybag  "' + property.key + '". Error: ' + args.get_message();
-
-                    }
-                );
-                    deferred.resolve(webProps);
+                    deferred.resolve();
+                    addNewProperty(key, value, indexed);
+                     
+                    
                 },
                 function (sender, args) {
                     common.logger.logError(args.get_message(), error, serviceId);
@@ -212,50 +201,49 @@
             return deferred.promise;
         }
 
-        function addNewProperty(property) {
-
+        function addNewProperty(key, value, indexed) {
+            var deferred = $q.defer();
             // Adds a new property or modified the value of an existing property. 
-            webProps.set_item(property.key, property.value)
+            webProps.set_item(key, value)
             // Check if "vti_indexedpropertykeys" property exists in the property bag. If yes, set the flag
 
-            var found = $.map($scope.properties, function (val) {
-                if (val.Key == 'vti_indexedpropertykeys') {
+            //var found = $.map($scope.properties, function (val) {
+            //    if (val.Key == 'vti_indexedpropertykeys') {
 
-                    property.indexedKeysExists = true;
-                }
-            });
-            if (property.indexed === true) {
-                var encodedPropKey = EncodePropertyKey(property.key);
+            //        property.indexedKeysExists = true;
+            //    }
+            //});
+            //if (property.indexed === true) {
+            //    var encodedPropKey = EncodePropertyKey(property.key);
 
-                if (property.indexedKeysExists) {
-                    var indexedProperties = webProps.get_item("vti_indexedpropertykeys");
-                    if (indexedProperties.indexOf(encodedPropKey) > -1) {
-                        // Means the property is already indexed
+            //    if (property.indexedKeysExists) {
+            //        var indexedProperties = webProps.get_item("vti_indexedpropertykeys");
+            //        if (indexedProperties.indexOf(encodedPropKey) > -1) {
+            //            // Means the property is already indexed
 
-                        alert('The propertybag  "' + property.key + '" is already indexed.');
-                    }
-                    else {
-                        // Add the encoded value to the property bag vti_indexedpropertykeys
-                        var addEncodedKey = indexedProperties + encodedPropKey + "|"
-                        webProps.set_item("vti_indexedpropertykeys", addEncodedKey);
-                        // alert('The vti_indexedpropertykeys  "' + property.key + '" was added');
-                    }
-                }
-                else {
-                    // vti_indexedpropertykeys does not exist. Add the new property.
-                    webProps.set_item("vti_indexedpropertykeys", encodedPropKey);
-                }
-            }
+            //            alert('The propertybag  "' + property.key + '" is already indexed.');
+            //        }
+            //        else {
+            //            // Add the encoded value to the property bag vti_indexedpropertykeys
+            //            var addEncodedKey = indexedProperties + encodedPropKey + "|"
+            //            webProps.set_item("vti_indexedpropertykeys", addEncodedKey);
+            //            // alert('The vti_indexedpropertykeys  "' + property.key + '" was added');
+            //        }
+            //    }
+            //    else {
+            //        // vti_indexedpropertykeys does not exist. Add the new property.
+            //        webProps.set_item("vti_indexedpropertykeys", encodedPropKey);
+            //    }
+            //}
             web.update();
             context.executeQueryAsync(
             function () {
-
-                alert('The propertybag  "' + property.key + '" was added');
-                $scope.GetProperties();
+                deferred.resolve();
+                //alert('The propertybag  "' + property.key + '" was added');
+                 
             },
             function (sender, args) {
-                alert(args.get_message());
-                rerurn = 'Failed in adding propertybag  "' + property.key + '". Error: ' + args.get_message();
+                //alert('Failed in adding propertybag  "' + property.key + '". Error: ' + args.get_message()); 
 
             }
         );

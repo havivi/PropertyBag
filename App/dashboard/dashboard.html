@@ -105,14 +105,14 @@
                 </uif-dialog-subtext>
                 <uif-textfield uif-label="Property" ng-model="vm.propertyName" ng-disabled="vm.propertyNameDisabled" />
                 <uif-textfield uif-label="Value" ng-model="vm.propertyValue" />
-                <<uif-toggle uif-label-off="No" uif-label-on="Yes" ng-model="toggled">Toggle this, or not</uif-toggle>
+                <<uif-toggle uif-label-off="No" uif-label-on="Yes" ng-model="vm.propertySearchable">Make Property Bag Searchable</uif-toggle>
             </uif-dialog-content>
             <uif-dialog-actions uif-position="right">
                 <button class="ms-Dialog-action ms-Button ms-Button--primary" ng-click="vm.closeDialog()">
                     <span class="ms-Button-label">Cancel</span>
                 </button>
                 <button class="ms-Dialog-action ms-Button ms-Button--primary">
-                    <span class="ms-Button-label">Save</span>
+                    <span class="ms-Button-label"  ng-click="vm.saveProperty(vm.subsite)">Save</span>
                 </button>
             </uif-dialog-actions>
         </uif-dialog-inner>
@@ -127,21 +127,21 @@
         <uif-dialog-inner>
             <uif-dialog-content>
                 <uif-dialog-subtext>
-                    <span>
-                        Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails.
-                        asdasda
+                    
+                     <span style="color:red; font-size:16px;">
+                         <i class="ms-Icon ms-Icon--alertOutline" style="font-size:24px"></i>     Are you sure you want to delete this property?
                     </span>
-                    <uif-icon uif-type="arrowDownLeft" />
+                    
                 </uif-dialog-subtext>
                 <uif-textfield uif-label="Property" ng-model="vm.propertyName" disabled />
                 <uif-textfield uif-label="Value" ng-model="vm.propertyValue" disabled /> 
             </uif-dialog-content>
             <uif-dialog-actions uif-position="right">
                 <button class="ms-Dialog-action ms-Button ms-Button--primary" ng-click="vm.closeDeleteDialog()">
-                    <span class="ms-Button-label">Cancel</span>
+                    <span class="ms-Button-label">No - Cancel</span>
                 </button>
-                <button class="ms-Dialog-action ms-Button ms-Button--primary">
-                    <span class="ms-Button-label">Delete</span>
+                <button class="ms-Dialog-action ms-Button ms-Button--primary" ng-click="vm.deleteProperty(vm.subsite)">
+                    <span class="ms-Button-label">YES - Delete</span>
                 </button>
             </uif-dialog-actions>
         </uif-dialog-inner>

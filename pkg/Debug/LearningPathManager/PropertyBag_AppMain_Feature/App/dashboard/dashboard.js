@@ -14,6 +14,9 @@
         vm.getListProperties = getListProperties;
         vm.openDialog = openDialog;
         vm.closeDialog = closeDialog;
+        vm.openDeleteDialog = openDeleteDialog;
+        vm.closeDeleteDialog = closeDeleteDialog;
+        vm.saveProperty = saveProperty;
         var logger = common.logger;
 
         vm.sites = [];
@@ -24,6 +27,7 @@
         vm.subsite = '';
         vm.listname = '';
         vm.showDialog = false;
+        vm.showDeleteDialog = false;
         // init controller
         init();
 
@@ -140,8 +144,35 @@
             }
             vm.showDialog = true;
         }
+
         function closeDialog() {
             vm.showDialog = false;
+        }
+
+        function openDeleteDialog(key, value) {
+            vm.propertyName = key;
+            vm.propertyValue = value;
+            
+            vm.showDeleteDialog = true;
+        }
+
+        function closeDeleteDialog() {
+            vm.showDeleteDialog = false;
+        }
+
+        function saveProperty(site) {
+            if (!site) {
+                site = vm.site;
+                vm.subsite = '';
+            }
+            datacontext.addPropertyBagWeb(site, vm.propertyName, vm.propertyValue, vm.propertySearchable)
+              .then(function () {
+                  alert('Property');
+                  closeDialog();
+                  getProperties(site, vm.listname);
+              }).catch(function (error) {
+                  common.logger.logError('error obtaining items', error, controllerId);
+              });
         }
 
     }
