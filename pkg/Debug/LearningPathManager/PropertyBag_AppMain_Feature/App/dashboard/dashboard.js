@@ -12,7 +12,10 @@
         vm.getSubsites = getSubsites;
         vm.getLists = getLists;
         vm.getListProperties = getListProperties;
+        vm.openDialog = openDialog;
+        vm.closeDialog = closeDialog;
         var logger = common.logger;
+
         vm.sites = [];
         vm.subsites = [];
         vm.lists = [];
@@ -20,6 +23,7 @@
         vm.site = '';
         vm.subsite = '';
         vm.listname = '';
+        vm.showDialog = false;
         // init controller
         init();
 
@@ -28,7 +32,7 @@
             logger.log("controller loaded", null, controllerId);
             common.activateController([], controllerId);
             getSites()
-          
+
         }
 
         function getSites() {
@@ -67,11 +71,11 @@
         }
 
         function getLists(site) {
- 
+
             vm.lists = [];
             vm.listname = '';
             if (!site) {
-                site = vm.site;               
+                site = vm.site;
                 vm.subsite = '';
             }
             getProperties(site, undefined);
@@ -122,6 +126,24 @@
                    common.logger.logError('error obtaining items', error, controllerId);
                });
         }
+
+        function openDialog(key, value) {
+            vm.propertyName = key;
+            vm.propertyValue = value;
+            if (key) {
+                vm.propertyHeader = "Edit Property";
+                vm.propertyNameDisabled = true;
+            }
+            else {
+                vm.propertyHeader = "New Property";
+                vm.propertyNameDisabled = false;
+            }
+            vm.showDialog = true;
+        }
+        function closeDialog() {
+            vm.showDialog = false;
+        }
+
     }
 })();
 

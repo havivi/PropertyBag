@@ -1,5 +1,5 @@
 ﻿
-<div data-ng-controller="dashboard as vm" class="ms-Grid" style="margin-bottom:100px">
+<div data-ng-controller="dashboard as vm" class="ms-Grid" style="margin-bottom:100px;min-height:800px;padding:20px;">
 
     <div class="ms-Grid-row">
 
@@ -48,15 +48,15 @@
     <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
             <h4 ng-show="!vm.subsite && !vm.listname && vm.site">
-                Properties for site: <uif-link ng-href="vm.site">{{vm.site}}</uif-link>
+                Properties for site: <uif-link ng-href="vm.site" style="color:#000000;text-decoration: underline">{{vm.site}}</uif-link>
             </h4>
             <h4 ng-show="vm.subsite && !vm.listname && vm.site">
-                Properties for subsite: <uif-link ng-href="vm.subsite">{{vm.subsite}}</uif-link>
+                Properties for subsite: <uif-link ng-href="vm.subsite"  style="color:#000000;text-decoration: underline">{{vm.subsite}}</uif-link>
             </h4>
             <h4 ng-show="vm.listname">
-                Properties for list: <b>  {{vm.listname}} </b>
-                <lable ng-show="!vm.subsite && vm.site">site: <uif-link ng-href="vm.site">{{vm.site}}</uif-link>  </lable>
-                <lable ng-show="vm.subsite && vm.site">subsite: <uif-link ng-href="vm.subsite">{{vm.subsite}}</uif-link> </lable>
+                Properties for list: <u>  {{vm.listname}} </u>
+                <lable ng-show="!vm.subsite && vm.site">site: <uif-link ng-href="vm.site"  style="color:#000000;text-decoration: underline">{{vm.site}}</uif-link>  </lable>
+                <lable ng-show="vm.subsite && vm.site">subsite: <uif-link ng-href="vm.subsite"  style="color:#000000;text-decoration: underline">{{vm.subsite}}</uif-link> </lable>
             </h4>
 
         </div>
