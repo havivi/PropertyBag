@@ -6,5 +6,6 @@
     <File Path="Images\info.png" Url="Images/info.png" ReplaceContent="TRUE" />
     <File Path="Images\success.png" Url="Images/success.png" ReplaceContent="TRUE" />
     <File Path="Images\warning.png" Url="Images/warning.png" ReplaceContent="TRUE" />
+    <File Path="Images\favicon.ico" Url="Images/favicon.ico" ReplaceContent="TRUE" />
   </Module>
 </Elements>

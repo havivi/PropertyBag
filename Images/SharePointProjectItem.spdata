@@ -7,5 +7,6 @@
     <ProjectItemFile Source="info.png" Target="Images\" Type="ElementFile" />
     <ProjectItemFile Source="success.png" Target="Images\" Type="ElementFile" />
     <ProjectItemFile Source="warning.png" Target="Images\" Type="ElementFile" />
+    <ProjectItemFile Source="favicon.ico" Target="Images\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -93,6 +93,7 @@
     <Content Include="Content\fabric.components.min.css" />
     <Content Include="Content\fabric.min.css" />
     <Content Include="Images\error.png" />
+    <Content Include="Images\favicon.ico" />
     <Content Include="Images\info.png" />
     <Content Include="Images\success.png" />
     <Content Include="Images\warning.png" />

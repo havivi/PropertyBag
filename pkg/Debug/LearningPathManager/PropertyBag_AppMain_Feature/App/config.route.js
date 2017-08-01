@@ -26,7 +26,7 @@
           templateUrl: 'app/dashboard/dashboard.html',
           title: 'Home',
           settings: { 
-            nav: 0,
+            nav: 1,
             content: 'Home',
             topNavigationEnabled: true
           }
@@ -38,7 +38,7 @@
             templateUrl: 'app/about/about.html',
           title: 'About',
           settings: {
-            nav: 1,
+            nav: 2,
             content: 'About',
             topNavigationEnabled: true
           }

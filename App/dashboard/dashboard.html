@@ -16,13 +16,13 @@
         </div>
     </div>
 
-    <div class="ms-Grid-row">
+    <div class="ms-Grid-row" ng-show="vm.subsites.length > 1">
        
         <div class="ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2">
             <uif-label>Subsite</uif-label>
         </div>
 
-        <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10">
+        <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10" >
             <uif-dropdown ng-model="vm.subsite" ng-change="vm.getLists(vm.subsite);">
                 <uif-dropdown-option value="{{subsite.path}}"
                                      ng-repeat="(key, subsite) in vm.subsites"
@@ -30,7 +30,7 @@
             </uif-dropdown>
         </div>
     </div>
-    <div class="ms-Grid-row">
+    <div class="ms-Grid-row" ng-show="vm.site">
         
         <div class="ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2" >
             <uif-label>List</uif-label>
@@ -62,9 +62,11 @@
         </div>
     </div>
 
-    <div class="ms-Grid-row">
+    <div class="ms-Grid-row"  ng-show="vm.site">
         <div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
-            <br /><br />
+            <div style="padding-top:15px;padding-bottom:20px;">
+                <i class="ms-Icon ms-Icon--plus" style="font-size:24px"></i>  New Property
+            </div>
             <uif-table uif-table-type="fixed">
                 <uif-table-head>
                     <uif-table-row>
@@ -76,10 +78,10 @@
                 </uif-table-head>
                 <uif-table-body>
                     <uif-table-row ng-repeat="(key, value)  in vm.properties " ng-if="$index > 0">
-                        <uif-table-cell style="width:20px;vertical-align: text-top;;cursor:pointer;text-align:center"><img src="/_layouts/15/images/edit.GIF" /></uif-table-cell>
+                        <uif-table-cell style="width:20px;vertical-align: text-top;cursor:pointer;text-align:center"><i class="ms-Icon ms-Icon--editBox" style="font-size:24px"></i></uif-table-cell>
                         <uif-table-cell style="vertical-align: text-top;word-wrap:break-word;">{{key}}</uif-table-cell>
                         <uif-table-cell style="vertical-align: text-top;word-wrap:break-word; width: 300px">{{value}}</uif-table-cell>
-                        <uif-table-cell style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center"><img src="/_layouts/15/images/delete.GIF" /></uif-table-cell>
+                        <uif-table-cell style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center"><i class="ms-Icon ms-Icon--trash" style="font-size:24px"></i> </uif-table-cell>
 
                     </uif-table-row>
                 </uif-table-body>

@@ -17,6 +17,9 @@
         vm.subsites = [];
         vm.lists = [];
         vm.properties = [];
+        vm.site = '';
+        vm.subsite = '';
+        vm.listname = '';
         // init controller
         init();
 
@@ -44,6 +47,8 @@
 
         function getSubsites(site) {
             vm.lists = [];
+            vm.subsite = '';
+
             getLists(site);
             getProperties(site, undefined);
             datacontext.getSubsites(site)
@@ -61,12 +66,17 @@
         }
 
         function getLists(site) {
+ 
             vm.lists = [];
+            vm.listname = '';
+            if (!site) {
+                site = vm.site;               
+                vm.subsite = '';
+            }
             getProperties(site, undefined);
             datacontext.getLists(site)
                .then(function (data) {
                    if (data) {
-                       vm.lists = [];
                        vm.lists.push({ title: "", path: "" });
                        for (var i = 0; i < data.length; i++) {
                            vm.lists.push({ title: data[i].Title, path: data[i].Url });
@@ -75,15 +85,15 @@
                }).catch(function (error) {
                    common.logger.logError('error obtaining items', error, controllerId);
                });
+
         }
 
         function getListProperties(list) {
-            var site = vm.site.path.Value;
+            var site = vm.site;
             if (vm.subsite) {
-                if (vm.subsite.path) {
-                    site = vm.subsite.path;
-                }
+                site = vm.subsite;
             }
+
             getProperties(site, list);
             datacontext.getLists(site)
                .then(function (data) {

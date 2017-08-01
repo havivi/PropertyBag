@@ -66,6 +66,7 @@
         }
 
         function getLists(site) {
+ 
             vm.lists = [];
             vm.listname = '';
             if (!site) {

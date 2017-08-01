@@ -41,6 +41,7 @@
     <ElementFile Location="Images\info.png" />
     <ElementFile Location="Images\success.png" />
     <ElementFile Location="Images\warning.png" />
+    <ElementFile Location="Images\favicon.ico" />
     <ElementManifest Location="Elements.xml" />
     <ElementFile Location="App\app.js" />
     <ElementFile Location="App\layout\shell.html" />
