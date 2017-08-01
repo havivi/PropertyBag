@@ -28,6 +28,7 @@
             logger.log("controller loaded", null, controllerId);
             common.activateController([], controllerId);
             getSites()
+          
         }
 
         function getSites() {

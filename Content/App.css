@@ -11,14 +11,14 @@ body{
 }
 
 #page-wrap {
-    width: 800px;
+    width: 1000px;
     margin: 0 auto;
     min-height:500px;
     background-color:#fff;
     padding: 4px;
 }
 #page-nav, #page-header{
-     width: 800px;
+     width: 1000px;
     margin: 0 auto;
 }
 

@@ -8,7 +8,7 @@
         </div>
 
         <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10">
-            <uif-dropdown ng-model="vm.site" ng-change="vm.getSubsites(vm.site);">
+            <uif-dropdown ng-model="vm.site" ng-change="vm.getSubsites(vm.site);" id="ddSite">
                 <uif-dropdown-option value="{{site.path.Value}}"
                                      ng-repeat="(key, site) in vm.sites"
                                      title="{{site.path.Value}}">{{site.title.Value}}</uif-dropdown-option>
@@ -16,14 +16,14 @@
         </div>
     </div>
 
-    <div class="ms-Grid-row" ng-show="vm.site">
+    <div class="ms-Grid-row" ng-show="vm.subsites.length > 1">
        
         <div class="ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2">
             <uif-label>Subsite</uif-label>
         </div>
 
         <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10" >
-            <uif-dropdown ng-model="vm.subsite" ng-change="vm.getLists(vm.subsite);">
+            <uif-dropdown ng-model="vm.subsite" ng-change="vm.getLists(vm.subsite);" id="ddSubsite">
                 <uif-dropdown-option value="{{subsite.path}}"
                                      ng-repeat="(key, subsite) in vm.subsites"
                                      title="{{subsite.path}}">{{subsite.title}}</uif-dropdown-option>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10">
-            <uif-dropdown ng-model="vm.listname" ng-change="vm.getListProperties(vm.listname);">
+            <uif-dropdown ng-model="vm.listname" ng-change="vm.getListProperties(vm.listname);"  id="ddList">
                 <uif-dropdown-option value="{{list.title}}"
                                      ng-repeat="(key, list) in vm.lists"
                                      title="{{list.title}}">{{list.title}}</uif-dropdown-option>
@@ -47,17 +47,17 @@
 
     <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
-            <h2  ng-show="!vm.subsite && !vm.listname && vm.site">
-                Properties for site: {{vm.site}}
-            </h2>
-            <h2  ng-show="vm.subsite && !vm.listname && vm.site">
-                Properties for subsite: {{vm.subsite}}
-            </h2>
-            <h2 ng-show="vm.listname">
-                Properties for list: {{vm.listname}} 
-                <lable ng-show="vm.site">site: {{vm.site}}</lable>
-                <lable ng-show="vm.subsite">subsite: {{vm.subsite}}</lable>
-            </h2>
+            <h4  ng-show="!vm.subsite && !vm.listname && vm.site">
+                Properties for site: <uif-link ng-href="vm.site">{{vm.site}}</uif-link> 
+            </h4>
+            <h4  ng-show="vm.subsite && !vm.listname && vm.site">
+                Properties for subsite: <uif-link ng-href="vm.subsite">{{vm.subsite}}</uif-link>
+            </h4>
+            <h4 ng-show="vm.listname">
+                Properties for list:   {{vm.listname}} 
+                <lable ng-show="vm.site">site: <uif-link ng-href="vm.site">{{vm.site}}</uif-link>  </lable>
+                <lable ng-show="vm.subsite">subsite: <uif-link ng-href="vm.subsite">{{vm.subsite}}</uif-link> </lable>
+            </h4>
 
         </div>
     </div>
