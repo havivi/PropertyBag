@@ -31,14 +31,15 @@
         }
 
         function getSitesResource() {
-
+            var host = spContext.hostWeb.url.split('/');
+           
             return $resource("_api/search/query",
            {},
            {
                get: {
                    method: 'GET',
                    params: {
-                       'querytext': '\'* AND contentclass:sts_site\'',
+                       'querytext': '\'* AND Path:' +  location.protocol + '//' + host[2] + '* AND contentclass:sts_site\'',
                        'selectproperties': '\'Title,Path\'',
                        'rowlimit': 2000
                    },

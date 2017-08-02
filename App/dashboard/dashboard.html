@@ -48,15 +48,15 @@
     <div class="ms-Grid-row">
         <div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
             <h4 ng-show="!vm.subsite && !vm.listname && vm.site">
-                Properties for site: <uif-link ng-href="vm.site" style="color:#000000;text-decoration: underline">{{vm.site}}</uif-link>
+                Properties for site:  {{vm.site}} 
             </h4>
             <h4 ng-show="vm.subsite && !vm.listname && vm.site">
-                Properties for subsite: <uif-link ng-href="vm.subsite"  style="color:#000000;text-decoration: underline">{{vm.subsite}}</uif-link>
+                Properties for subsite:  {{vm.subsite}} 
             </h4>
             <h4 ng-show="vm.listname">
-                Properties for list: <u>  {{vm.listname}} </u>
-                <lable ng-show="!vm.subsite && vm.site">site: <uif-link ng-href="vm.site"  style="color:#000000;text-decoration: underline">{{vm.site}}</uif-link>  </lable>
-                <lable ng-show="vm.subsite && vm.site">subsite: <uif-link ng-href="vm.subsite"  style="color:#000000;text-decoration: underline">{{vm.subsite}}</uif-link> </lable>
+                Properties for list: <u>{{vm.listname}}</u> 
+                <lable ng-show="!vm.subsite && vm.site"> site:  {{vm.site}}   </lable>
+                <lable ng-show="vm.subsite && vm.site"> subsite: {{vm.subsite}} </lable>
             </h4>
 
         </div>
@@ -96,13 +96,7 @@
         </uif-dialog-header>
         <uif-dialog-inner>
             <uif-dialog-content>
-                <uif-dialog-subtext>
-                    <span>
-                        Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails.
-                        asdasda
-                    </span>
-                    <uif-icon uif-type="arrowDownLeft" />
-                </uif-dialog-subtext>
+                
                 <uif-textfield uif-label="Property" ng-model="vm.propertyName" ng-disabled="vm.propertyNameDisabled" />
                 <uif-textfield uif-label="Value" ng-model="vm.propertyValue" />
                 <<uif-toggle uif-label-off="No" uif-label-on="Yes" ng-model="vm.propertySearchable">Make Property Bag Searchable</uif-toggle>
