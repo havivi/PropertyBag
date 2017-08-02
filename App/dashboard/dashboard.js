@@ -18,6 +18,7 @@
         vm.closeDeleteDialog = closeDeleteDialog;
         vm.saveProperty = saveProperty;
         vm.deleteProperty = deleteProperty;
+        vm.isProperty = isProperty;
         var logger = common.logger;
 
         vm.sites = [];
@@ -29,6 +30,8 @@
         vm.listname = '';
         vm.showDialog = false;
         vm.showDeleteDialog = false;
+        vm.indexedKeysExists = false;
+        vm.indexedKeysValue = '';
         // init controller
         init();
 
@@ -58,7 +61,7 @@
         function getSubsites(site) {
             vm.lists = [];
             vm.subsite = '';
-
+            vm.listname = '';
             getLists(site);
             getProperties(site, undefined);
             datacontext.getSubsites(site)
@@ -91,6 +94,7 @@
                        for (var i = 0; i < data.length; i++) {
                            vm.lists.push({ title: data[i].Title, path: data[i].Url });
                        }
+                      
                    }
                }).catch(function (error) {
                    common.logger.logError('error obtaining items', error, controllerId);
@@ -121,11 +125,18 @@
 
         function getProperties(site, list) {
             vm.properties = [];
-            datacontext.getProperties(site)
+            datacontext.getProperties(site, list)
                .then(function (data) {
                    if (data) {
                        vm.properties = data;
-                      
+                       for (var p in vm.properties) {
+                           if (p === "vti_x005f_indexedpropertykeys") {
+                               vm.indexedKeysExists = true;
+                               vm.indexedKeysValue = vm.properties[p];
+                           }
+                       }
+
+                        
                    }
                }).catch(function (error) {
                    common.logger.logError('error obtaining items', error, controllerId);
@@ -166,14 +177,26 @@
                 site = vm.site;
                 vm.subsite = '';
             }
-            datacontext.addPropertyBagWeb(site, vm.propertyName, vm.propertyValue, vm.propertySearchable)
-              .then(function () {
-                  common.logger.logSuccess("Property Bag added successfully", null, controllerId);
-                  closeDialog();
-                  getProperties(site, vm.listname);
-              }).catch(function (error) {
-                  common.logger.logError('error obtaining items', error, controllerId);
-              });
+
+            if (vm.listname) {
+                datacontext.addPropertyBagList(vm.listname, site, vm.propertyName, vm.propertyValue, vm.propertySearchable, vm.indexedKeysExists, vm.indexedKeysValue)
+                  .then(function () {
+                      common.logger.logSuccess("Property Bag added successfully", null, controllerId);
+                      closeDialog();
+                      getProperties(site, vm.listname);
+                  }).catch(function (error) {
+                      common.logger.logError('error obtaining items', error, controllerId);
+                  });
+            } else {
+                datacontext.addPropertyBagWeb(site, vm.propertyName, vm.propertyValue, vm.propertySearchable, vm.indexedKeysExists, vm.indexedKeysValue)
+                  .then(function () {
+                      common.logger.logSuccess("Property Bag added successfully", null, controllerId);
+                      closeDialog();
+                      getProperties(site, vm.listname);
+                  }).catch(function (error) {
+                      common.logger.logError('error obtaining items', error, controllerId);
+                  });
+            }
         }
 
         function deleteProperty(site) {
@@ -191,6 +214,18 @@
               });
         }
         
+        function isProperty(data) {
+            return ((typeof vm.properties[data]) === 'string')  
+             
+        }
+
     }
+
+    String.prototype.replaceAll = function (search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
+   
 })();
 

@@ -21,6 +21,7 @@
             getLists: getLists,
             getProperties: getProperties,
             addPropertyBagWeb: addPropertyBagWeb,
+            addPropertyBagList: addPropertyBagList,
             deletePropertyBagWeb: deletePropertyBagWeb
         };
 
@@ -157,11 +158,7 @@
 
             var deferred = $q.defer();
             resource.get({}, function (data) {
-                if (list) {
-                    deferred.resolve(data.d.properties);
-                } else {
-                    deferred.resolve(data.d);
-                }
+                deferred.resolve(data.d);
                 common.logger.log("retrieved app content", data, serviceId);
             }, function (error) {
                 deferred.reject(error);
@@ -173,10 +170,13 @@
 
         var web;
         var webProps;
+        var listProps;
         var context;
         var appContextSite;
+        var list;
+        var rootFolder;
 
-        function addPropertyBagWeb(site, key, value, indexed) {
+        function addPropertyBagWeb(site, key, value, indexed, indexedKeysExists, indexedKeysValue) {
 
             var deferred = $q.defer();
             context = new SP.ClientContext(spContext.hostWeb.appWebUrl);
@@ -186,21 +186,77 @@
             webProps = web.get_allProperties();
             context.load(web);
             context.load(webProps);
+            webProps.set_item(key, value)
+
+            if (indexed) {
+                var encodeValue = encodePropertyValue(value);
+                if (!indexedKeysExists) {
+                    webProps.set_item("vti_indexedpropertykeys", encodeValue);
+                } else {
+                    webProps.set_item("vti_indexedpropertykeys", indexedKeysValue + encodeValue + "|");
+                }
+            }
+            web.update();
+
+
             context.executeQueryAsync(
                 function () {
                     deferred.resolve();
-                    addNewProperty(key, value, indexed);
 
 
                 },
                 function (sender, args) {
-                    common.logger.logError(args.get_message(), error, serviceId);
+                    common.logger.logError(args.get_message(), args.get_message(), serviceId);
                     deferred.reject(args.get_message());
                 }
             );
 
             return deferred.promise;
         }
+
+        function addPropertyBagList(listName, site, key, value, indexed, indexedKeysExists, indexedKeysValue) {
+
+            var deferred = $q.defer();
+            context = new SP.ClientContext(spContext.hostWeb.appWebUrl);
+            appContextSite = new SP.AppContextSite(context, site);           
+            web = appContextSite.get_web();
+            list = web.get_lists().getByTitle(listName);           
+            rootFolder = list.get_rootFolder();            
+            listProps = rootFolder.get_listItemAllFields();
+            context.load(appContextSite.get_web());
+            context.load(web);
+            context.load(list);
+            context.load(rootFolder);
+            context.load(listProps);
+            listProps.set_item(key, value)
+
+            if (indexed) {
+                var encodeValue = encodePropertyValue(value);
+                if (!indexedKeysExists) {
+                    listProps.set_item("vti_indexedpropertykeys", encodeValue);
+                } else {
+                    listProps.set_item("vti_indexedpropertykeys", indexedKeysValue + encodeValue + "|");
+                }
+            }
+            rootFolder.update();
+            list.update();
+            rootFolder.update();
+            context.executeQueryAsync(
+               function () {
+                   deferred.resolve();
+
+
+               },
+               function (sender, args) {
+                   common.logger.logError(args.get_message(), args.get_message(), serviceId);
+                   deferred.reject(args.get_message());
+               }
+           );
+
+            return deferred.promise;
+        }
+
+
 
         function deletePropertyBagWeb(site, key) {
 
@@ -212,13 +268,14 @@
             webProps = web.get_allProperties();
             context.load(web);
             context.load(webProps);
+            webProps.set_item(key);
+            web.update();
             context.executeQueryAsync(
                 function () {
                     deferred.resolve();
-                    deleteProperty(key);
                 },
                 function (sender, args) {
-                    common.logger.logError(args.get_message(), error, serviceId);
+                    common.logger.logError(args.get_message(), args.get_message(), serviceId);
                     deferred.reject(args.get_message());
                 }
             );
@@ -226,45 +283,14 @@
             return deferred.promise;
         }
 
-        function addNewProperty(key, value, indexed) {
-            var deferred = $q.defer();
-            // Adds a new property or modified the value of an existing property. 
-            webProps.set_item(key, value)
-            
-             
-            web.update();
-            context.executeQueryAsync(
-            function () {
-                deferred.resolve();
-                  
 
-            },
-            function (sender, args) {
-                //alert('Failed in adding propertybag  "' + property.key + '". Error: ' + args.get_message()); 
 
-            }
-        );
-        }
 
-        function deleteProperty(key) {
-            var deferred = $q.defer();
-            webProps.set_item(key);   
-            web.update();
-            context.executeQueryAsync(
-            function () {
-                deferred.resolve(); 
-                 
-            },
-            function (sender, args) { 
 
-            }
-        );
-        }
-
-        function EncodePropertyKey(propKey) {
+        function encodePropertyValue(value) {
             var bytes = [];
-            for (var i = 0; i < propKey.length; ++i) {
-                bytes.push(propKey.charCodeAt(i));
+            for (var i = 0; i < value.length; ++i) {
+                bytes.push(value.charCodeAt(i));
                 bytes.push(0);
             }
             var b64encoded = window.btoa(String.fromCharCode.apply(null, bytes));

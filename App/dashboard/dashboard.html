@@ -64,24 +64,24 @@
 
     <div class="ms-Grid-row" ng-show="vm.site">
         <div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
-            <div style="padding-top:15px;padding-bottom:20px;cursor:pointer" ng-click="vm.openDialog()">
+            <div style="padding-top:15px;padding-bottom:20px;cursor:pointer" ng-click="vm.openDialog()" ng-hide="vm.listname">
                 <i class="ms-Icon ms-Icon--plus" style="font-size:24px"></i>  New Property
             </div>
             <uif-table uif-table-type="fixed">
                 <uif-table-head>
                     <uif-table-row>
-                        <uif-table-header uif-order-by="fileName" style="width:20px">Edit</uif-table-header>
+                        <uif-table-header uif-order-by="fileName" style="width:20px"  ng-hide="vm.listname">Edit</uif-table-header>
                         <uif-table-header>Property</uif-table-header>
                         <uif-table-header uif-order-by="modified">Value</uif-table-header>
-                        <uif-table-header uif-order-by="type" style="width:20px">Delete</uif-table-header>
+                        <uif-table-header uif-order-by="type" style="width:20px"  ng-hide="vm.listname">Delete</uif-table-header>
                     </uif-table-row>
                 </uif-table-head>
                 <uif-table-body>
-                    <uif-table-row ng-repeat="(key, value)  in vm.properties " ng-if="$index > 0">
-                        <uif-table-cell style="width:20px;vertical-align: text-top;cursor:pointer;text-align:center" ng-click="vm.openDialog(key,value)"><i class="ms-Icon ms-Icon--editBox" style="font-size:24px"></i></uif-table-cell>
-                        <uif-table-cell style="vertical-align: text-top;word-wrap:break-word;">{{key}}</uif-table-cell>
-                        <uif-table-cell style="vertical-align: text-top;word-wrap:break-word; width: 300px">{{value}}</uif-table-cell>
-                        <uif-table-cell style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center" ng-click="vm.openDeleteDialog(key,value)"><i class="ms-Icon ms-Icon--trash" style="font-size:24px"></i> </uif-table-cell>
+                    <uif-table-row ng-repeat="(key, value)  in vm.properties " ng-if="$index > 0" ng-show="vm.isProperty(key)">
+                        <uif-table-cell  ng-hide="vm.listname" style="width:20px;vertical-align: text-top;cursor:pointer;text-align:center" ng-click="vm.openDialog(key.replaceAll('_x005f_','_'),value)"><i class="ms-Icon ms-Icon--editBox" style="font-size:24px"></i></uif-table-cell>
+                        <uif-table-cell style="vertical-align: text-top;word-wrap:break-word;">{{key.replaceAll("_x005f_","_");}}</uif-table-cell>
+                        <uif-table-cell style="vertical-align: text-top;word-wrap:break-word; width: 300px">{{value}}  </uif-table-cell>
+                        <uif-table-cell  ng-hide="vm.listname" style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center" ng-click="vm.openDeleteDialog(key.replaceAll('_x005f_','_'),value)"><i class="ms-Icon ms-Icon--trash" style="font-size:24px"></i> </uif-table-cell>
 
                     </uif-table-row>
                 </uif-table-body>
