@@ -27,5 +27,6 @@
     <ProjectItemFile Source="App\config.angular.http.js" Target="App\" Type="ElementFile" />
     <ProjectItemFile Source="App\about\about.js" Target="App\about\" Type="ElementFile" />
     <ProjectItemFile Source="App\about\about.html" Target="App\about\" Type="ElementFile" />
+     
   </Files>
 </ProjectItem>

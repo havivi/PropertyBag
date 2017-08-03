@@ -26,5 +26,6 @@
     <File Path="App\config.angular.http.js" Url="App/config.angular.http.js" ReplaceContent="TRUE" />
     <File Path="App\about\about.js" Url="App/about/about.js" ReplaceContent="TRUE" />
     <File Path="App\about\about.html" Url="App/about/about.html" ReplaceContent="TRUE" />
+    <File Path="README.md" Url="README.md" ReplaceContent="TRUE" />
   </Module>
 </Elements>

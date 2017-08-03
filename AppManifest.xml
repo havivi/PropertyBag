@@ -9,6 +9,9 @@
   <Properties>
     <Title>PropertyBag</Title>
     <StartPage>~appWebUrl/appLauncher.html?{StandardTokens}&amp;SPHostTitle={HostTitle}&amp;SPHostLogoUrl={HostLogoUrl}</StartPage>
+    <SupportedLocales>
+      <SupportedLocale CultureName="en-US" />
+    </SupportedLocales>
   </Properties>
 
   <AppPrincipal>

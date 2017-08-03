@@ -105,6 +105,7 @@
     </None>
     <Content Include="Elements.xml" />
     <Content Include="Pages\Elements.xml" />
+    <None Include="README.md" />
     <None Include="Scripts\angular-animate.min.js.map">
       <DependentUpon>angular-animate.js</DependentUpon>
     </None>
@@ -239,6 +240,16 @@
     <Folder Include="App\models\" />
     <Folder Include="Data\" />
     <Folder Include="fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources %28Host Web%29\Resources.resx">
+      <OpcRelationship>content-defaultresource</OpcRelationship>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources %28Host Web%29\Resources.en-US.resx">
+      <OpcRelationship>content-resource</OpcRelationship>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
