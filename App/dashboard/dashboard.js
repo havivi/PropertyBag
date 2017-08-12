@@ -4,10 +4,10 @@
     // define controller
     var controllerId = 'dashboard';
     angular.module('app').controller(controllerId,
-        ['$location', '$routeParams', 'common', 'datacontext', dashboard]);
+        ['$location', '$routeParams', 'common', 'datacontext','spContext', dashboard]);
 
     // init controller
-    function dashboard($location, $routeParams, common, datacontext) {
+    function dashboard($location, $routeParams, common, datacontext, spContext) {
         var vm = this;
         vm.getSubsites = getSubsites;
         vm.getLists = getLists;
@@ -39,29 +39,17 @@
         function init() {
             logger.log("controller loaded", null, controllerId);
             common.activateController([], controllerId);
-            getSites()
+            getSubsites(spContext.hostWeb.url)
 
         }
 
-        function getSites() {
-            vm.subsites = [];
-            datacontext.getSites()
-               .then(function (data) {
-                   if (data) {
-
-                       for (var i = 0; i < data.length; i++) {
-                           vm.sites.push({ title: data[i].Cells.results[2], path: data[i].Cells.results[3] });
-                       }
-                   }
-               }).catch(function (error) {
-                   common.logger.logError('error obtaining items', error, controllerId);
-               });
-        }
+          
 
         function getSubsites(site) {
             vm.lists = [];
             vm.subsite = '';
             vm.listname = '';
+            vm.site = site;
             getLists(site);
             getProperties(site, undefined);
             datacontext.getSubsites(site)

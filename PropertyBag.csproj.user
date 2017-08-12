@@ -11,13 +11,14 @@
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
     <WorkflowDebuggingClientSecret>P0b0H6DuA4+v+EMQ1rDnBd101gkUTbLw/AtKGetLb+A=</WorkflowDebuggingClientSecret>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{C1CDDADD-2546-481F-9697-4EA41081F2FC}">
         <ProjectStore>
-          <AppInstancePackageModifiedTime>2017-08-01T13:16:01.2480241Z</AppInstancePackageModifiedTime>
-          <AppInstanceId>22c99835-e907-49a6-943d-057503690dd2</AppInstanceId>
+          <AppInstancePackageModifiedTime>2017-08-12T13:41:31.0633813Z</AppInstancePackageModifiedTime>
+          <AppInstanceId>e697cf29-e6db-47f9-930c-a1ab284cf891</AppInstanceId>
           <IsWorkflowDebuggingEnabled>false</IsWorkflowDebuggingEnabled>
         </ProjectStore>
       </FlavorProperties>

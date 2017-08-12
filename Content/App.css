@@ -8,7 +8,9 @@ body {
 }
 
 #header {
-    height: 40px;
+      width:1000px;
+     background-color:#ffffff;
+     padding-bottom: 20px;
 }
 
 #page-wrap {

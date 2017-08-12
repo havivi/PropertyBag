@@ -4,15 +4,12 @@
     <div class="ms-Grid-row">
 
         <div class="ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2">
-            <uif-label>Site collection</uif-label>
-        </div>
+            <div style="margin-bottom:15px;margin-top:5px;font-size:14px">
+                 Site</div>
+            </div>
 
-        <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10">
-            <uif-dropdown ng-model="vm.site" ng-change="vm.getSubsites(vm.site);" id="ddSite">
-                <uif-dropdown-option value="{{site.path.Value}}"
-                                     ng-repeat="(key, site) in vm.sites"
-                                     title="{{site.path.Value}}">{{site.title.Value}}</uif-dropdown-option>
-            </uif-dropdown>
+        <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10" >
+            <div style="margin-bottom:15px;margin-top:5px;font-size:14px">{{vm.site}}</div>         
         </div>
     </div>
 

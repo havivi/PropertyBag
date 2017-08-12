@@ -105,7 +105,6 @@
     </None>
     <Content Include="Elements.xml" />
     <Content Include="Pages\Elements.xml" />
-    <None Include="README.md" />
     <None Include="Scripts\angular-animate.min.js.map">
       <DependentUpon>angular-animate.js</DependentUpon>
     </None>
@@ -123,6 +122,7 @@
     </None>
     <None Include="SharePointProjectItem.spdata">
       <SharePointProjectItemId>{6e9d39b6-7315-4df9-bfac-91be1a0ae8c9}</SharePointProjectItemId>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

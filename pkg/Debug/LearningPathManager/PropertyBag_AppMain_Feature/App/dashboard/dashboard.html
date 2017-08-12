@@ -8,11 +8,12 @@
         </div>
 
         <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10">
-            <uif-dropdown ng-model="vm.site" ng-change="vm.getSubsites(vm.site);" id="ddSite">
+            <uif-label>{{vm.site}}</uif-label>
+            <!--<uif-dropdown ng-model="vm.site" ng-change="vm.getSubsites(vm.site);" id="ddSite">
                 <uif-dropdown-option value="{{site.path.Value}}"
                                      ng-repeat="(key, site) in vm.sites"
                                      title="{{site.path.Value}}">{{site.title.Value}}</uif-dropdown-option>
-            </uif-dropdown>
+            </uif-dropdown>-->
         </div>
     </div>
 
