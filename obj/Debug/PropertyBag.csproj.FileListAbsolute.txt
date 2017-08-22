@@ -8,6 +8,5 @@ C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Workflow.Client.dll
 C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Activities.xml
 C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Activities.Design.xml
 C:\code\havivi\PropertyBag\bin\Debug\Microsoft.Workflow.Client.xml
-C:\code\havivi\PropertyBag\obj\Debug\PropertyBag.csprojResolveAssemblyReference.cache
 C:\code\havivi\PropertyBag\obj\Debug\LearningPathManager.dll
 C:\code\havivi\PropertyBag\obj\Debug\LearningPathManager.pdb

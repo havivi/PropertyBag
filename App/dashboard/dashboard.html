@@ -4,12 +4,15 @@
     <div class="ms-Grid-row">
 
         <div class="ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2">
-            <div style="margin-bottom:15px;margin-top:5px;font-size:14px">
-                 Site</div>
-            </div>
+            <uif-label>Site collection</uif-label>
+        </div>
 
-        <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10" >
-            <div style="margin-bottom:15px;margin-top:5px;font-size:14px">{{vm.site}}</div>         
+        <div class="ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg10">
+            <uif-dropdown ng-model="vm.site" ng-change="vm.getSubsites(vm.site);" id="ddSite">
+                <uif-dropdown-option value="{{site.path.Value}}"
+                                     ng-repeat="(key, site) in vm.sites"
+                                     title="{{site.path.Value}}">{{site.title.Value}}</uif-dropdown-option>
+            </uif-dropdown>
         </div>
     </div>
 
@@ -75,10 +78,10 @@
                 </uif-table-head>
                 <uif-table-body>
                     <uif-table-row ng-repeat="(key, value)  in vm.properties " ng-if="$index > 0" ng-show="vm.isProperty(key)">
-                        <uif-table-cell  ng-hide="vm.listname" style="width:20px;vertical-align: text-top;cursor:pointer;text-align:center" ng-click="vm.openDialog(key.replaceAll('_x005f_','_'),value)"><i class="ms-Icon ms-Icon--editBox" style="font-size:24px"></i></uif-table-cell>
+                        <uif-table-cell  ng-hide="vm.listname" style="width:20px;vertical-align: text-top;"><i  ng-click="vm.openDialog(key.replaceAll('_x005f_','_'),value)" class="ms-Icon ms-Icon--editBox" style="font-size:24px;cursor:pointer;text-align:center" ng-show="key.replaceAll('_x005f_','_') != 'vti_categories' && key.replaceAll('_x005f_','_') != 'vti_approvallevels' && key.replaceAll('_x005f_','_') != 'vti_extenderversion'"></i></uif-table-cell>
                         <uif-table-cell style="vertical-align: text-top;word-wrap:break-word;">{{key.replaceAll("_x005f_","_");}}</uif-table-cell>
                         <uif-table-cell style="vertical-align: text-top;word-wrap:break-word; width: 300px">{{value}}  </uif-table-cell>
-                        <uif-table-cell  ng-hide="vm.listname" style="vertical-align: text-top;width:20px;cursor:pointer;text-align:center" ng-click="vm.openDeleteDialog(key.replaceAll('_x005f_','_'),value)"><i class="ms-Icon ms-Icon--trash" style="font-size:24px"></i> </uif-table-cell>
+                        <uif-table-cell  ng-hide="vm.listname" style="vertical-align: text-top;" ><i class="ms-Icon ms-Icon--trash" ng-click="vm.openDeleteDialog(key.replaceAll('_x005f_','_'),value)" style="font-size:24px;cursor:pointer;text-align:center" ng-show="key.replaceAll('_x005f_','_') != 'vti_categories' && key.replaceAll('_x005f_','_') != 'vti_approvallevels' && key.replaceAll('_x005f_','_') != 'vti_extenderversion'"></i> </uif-table-cell>
 
                     </uif-table-row>
                 </uif-table-body>
@@ -102,8 +105,8 @@
                 <button class="ms-Dialog-action ms-Button ms-Button--primary" ng-click="vm.closeDialog()">
                     <span class="ms-Button-label">Cancel</span>
                 </button>
-                <button class="ms-Dialog-action ms-Button ms-Button--primary">
-                    <span class="ms-Button-label"  ng-click="vm.saveProperty(vm.subsite)">Save</span>
+                <button class="ms-Dialog-action ms-Button ms-Button--primary" ng-disabled="!vm.propertyName || !vm.propertyValue" ng-click="vm.saveProperty(vm.subsite)">
+                    <span class="ms-Button-label" >Save</span>
                 </button>
             </uif-dialog-actions>
         </uif-dialog-inner>

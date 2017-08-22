@@ -38,12 +38,26 @@
         // init controller
         function init() {
             logger.log("controller loaded", null, controllerId);
-            common.activateController([], controllerId);
-            getSubsites(spContext.hostWeb.url)
-
+            common.activateController([], controllerId);            
+            getSites();
         }
 
-          
+        function getSites() {
+            vm.subsites = [];
+            datacontext.getSites()
+               .then(function (data) {
+                   if (data) {
+
+                       for (var i = 0; i < data.length; i++) {
+                           vm.sites.push({ title: data[i].Cells.results[2], path: data[i].Cells.results[3] });
+                       }
+                   }
+               }).catch(function (error) {
+                   common.logger.logError('error obtaining items', error, controllerId);
+               });
+        }
+
+
 
         function getSubsites(site) {
             vm.lists = [];
@@ -161,11 +175,12 @@
         }
 
         function saveProperty(site) {
+           
             if (!site) {
                 site = vm.site;
                 vm.subsite = '';
             }
-
+           
             if (vm.listname) {
                 datacontext.addPropertyBagList(vm.listname, site, vm.propertyName, vm.propertyValue, vm.propertySearchable, vm.indexedKeysExists, vm.indexedKeysValue)
                   .then(function () {

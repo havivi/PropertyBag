@@ -16,6 +16,7 @@
 
         // service public signature
         return {
+            getSites: getSites,
             getSubsites: getSubsites,
             getLists: getLists,
             getProperties: getProperties,
@@ -45,6 +46,26 @@
             });
 
             return deferred.promise;
+        }
+
+        function getSitesResource() {
+            var host = spContext.hostWeb.url.split('/');
+
+            return $resource("_api/search/query",
+           {},
+           {
+               get: {
+                   method: 'GET',
+                   params: {
+                       'querytext': '\'* AND Path:' + location.protocol + '//' + host[2] + '* AND contentclass:sts_site\'',
+                       'selectproperties': '\'Title,Path\'',
+                       'rowlimit': 2000
+                   },
+                   headers: {
+                       'Accept': 'application/json;odata=verbose'
+                   }
+               }
+           });
         }
 
         function getSubsitesResource(site) {
